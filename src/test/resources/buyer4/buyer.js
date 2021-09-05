@@ -1834,15 +1834,15 @@ function nn_forward(input, nn_model_weights) {
 function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
 
   let ad = interestGroup.ads[0];
-  let input = ad.metadata.input;
+  let input = ad.adMetadata.input;
 
   let bid = nn_forward(input, nn_model_weights_0) * nn_forward(input, nn_model_weights_1)
             * nn_forward(input, nn_model_weights_2) * nn_forward(input, nn_model_weights_3)
             * nn_forward(input, nn_model_weights_4);
 
-  return {'ad': 'example',
+  return {'ad': ad,
           'bid': bid,
-          'render': ad.renderUrl};
+          'renderUrl': ad.renderUrl};
 }
 
 function reportWin(auctionSignals, perBuyerSignals, sellerSignals, browserSignals) {
